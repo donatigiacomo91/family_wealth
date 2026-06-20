@@ -1,22 +1,15 @@
-import { supabase } from '@/lib/supabase'
+import { Sidebar } from '@/components/layout/Sidebar';
+import { Dashboard } from '@/components/dashboard/Dashboard';
 
-export default async function Home() {
-  const { data, error } = await supabase
-    .from('test')
-    .select('*')
-
-  if (error) {
-    return <p>Errore: {error.message}</p>
-  }
-
+export default function HomePage() {
   return (
-    <main>
-      <h1>Test Supabase</h1>
-      <ul>
-        {data.map((riga) => (
-          <li key={riga.id}>{riga.messaggio}</li>
-        ))}
-      </ul>
-    </main>
-  )
+    <div className="min-h-screen bg-ink-50 p-4 md:p-8">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:gap-6">
+        <Sidebar />
+        <main className="flex-1">
+          <Dashboard />
+        </main>
+      </div>
+    </div>
+  );
 }
