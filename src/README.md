@@ -1,7 +1,3 @@
-# Family Finance
-
-App per la gestione del patrimonio e delle spese/entrate della famiglia.
-
 ## Stack
 
 - **Next.js 14** (App Router) + **TypeScript**
@@ -28,18 +24,18 @@ Apri [http://localhost:3000](http://localhost:3000).
 family-finance/
 │
 ├── app/
-│   ├── page.tsx                  → home page (sezione "Expenses")
-│   ├── layout.tsx                → layout globale, font
+│   ├── layout.tsx                → layout globale: sidebar + header fissi, font
+│   ├── page.tsx                  → route "/" → contenuto Expenses
 │   ├── globals.css
-│   ├── projections/page.tsx      → placeholder, feature futura
-│   ├── targets/page.tsx          → placeholder, feature futura
-│   └── api/                      → cartella pronta per future API routes
+│   ├── projections/page.tsx      → route "/projections" → placeholder
+│   └── targets/page.tsx          → route "/targets" → placeholder
 │
 ├── components/
 │   ├── layout/
-│   │   └── Sidebar.tsx           → navigazione laterale
+│   │   ├── Sidebar.tsx           → navigazione laterale (Expenses/Projections/Targets)
+│   │   └── AppHeader.tsx         → wrapper che mostra WealthHeader, montato nel layout
 │   ├── dashboard/
-│   │   ├── Dashboard.tsx         → componente orchestratore principale
+│   │   ├── ExpensesView.tsx      → contenuto della sezione Expenses (tabella + form)
 │   │   ├── WealthHeader.tsx      → patrimonio totale + variazioni %
 │   │   ├── TransactionTable.tsx  → tabella spese/entrate
 │   │   ├── TransactionForm.tsx   → form aggiunta/modifica
@@ -52,6 +48,7 @@ family-finance/
 ├── lib/
 │   ├── data.ts                   → layer dati (oggi mock, domani Supabase)
 │   ├── format.ts                 → formattazione valuta/data/frequenza
+│   ├── wealth-context.tsx        → React Context: patrimonio/membri condivisi tra le pagine
 │   └── supabase.ts                → client Supabase, pronto ma non ancora usato
 │
 ├── types/
